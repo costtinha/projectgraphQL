@@ -1,0 +1,102 @@
+type Query{
+    offices:[Office]
+}
+
+
+type Office{
+    code: ID!
+    city: String!
+    phone: String!
+    address: String!
+    state: String!
+    country: String!
+    postalCode: Int!
+    territory: String!
+    employees: [Employee]
+}
+type Employee{
+    employeeId: ID!
+    officeCode: Office!
+    reportsTo: Employee
+    lastName: String!
+    firstName: String!
+    extension: String
+    email: String!
+    jobTitle: String!
+    employees: [Employee]
+}
+type Customer{
+    customerId: ID!
+    salesRepEmployeeNum: Employee
+    name: String!
+    lastName: String!
+    firstName: String
+    phone: String!
+    address1: String!
+    address2: String
+    city: String!
+    state: String!
+    postalCode: Int!
+    country: String!
+    creditLimit: Int!
+    payments: [Payment]
+    customerOrders: [Order]
+}
+type Payment{
+    checkNum: ID!
+    customerId: Customer!
+    paymentDate: String!
+    amount: Int!
+}
+
+type Shippers{
+    shipId: ID!
+    companyName: String!
+    phoneNumber: String!
+    shipperOrders: [Order]
+}
+type Order{
+    orderId: ID!
+    customerId: Customer!
+    orderDate: String!
+    requiredDate: String!
+    shippedDate: String!
+    status: Int!
+    comments: String!
+    shipId: Shippers!
+    storeId: Store!
+    orderProducts: [OrderProduct]
+}
+type Store{
+    storeId: ID!
+    storeName: String
+    storeOrders: [Order]
+}
+type ProductLine{
+    productLineId: ID!
+    descInText: String
+    descInHTML: String
+    image: String
+    products: [Product]
+}
+
+type Product{
+    productCode: ID!
+    productLineId: ProductLine!
+    name: String
+    scale: Int
+    vendor: String
+    pdtDescription: String
+    qntyInStock: Int
+    buyPrice: Int
+    MSRP: String
+    orderProducts: [OrderProduct]
+}
+type OrderProduct{
+    orderProductId: ID!
+    orderId: Order!
+    productCode: Product!
+    qnty: Int
+    priceEach: Int
+
+}
