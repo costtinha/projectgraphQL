@@ -1,0 +1,44 @@
+extend type Query {
+    customers: [Customer]
+    customerById(customerId: ID): Customer
+}
+
+type Customer{
+    customerId: ID!
+    salesRepEmployeeNum: Employee
+    name: String!
+    lastName: String!
+    firstName: String
+    phone: String!
+    address1: String!
+    address2: String
+    city: String!
+    state: String!
+    postalCode: Int!
+    country: String!
+    creditLimit: Int!
+    payments: [Payment]
+    customerOrders: [Order]
+}
+
+input CreateCustomerInput{
+    customerId: ID!
+    salesRepEmployeeNum: ID
+    name: String!
+    lastName: String
+    firstName: String
+    phone: String
+    address1: String!
+    address2: String
+    city: String
+    state: String
+    postalCode: Int
+    country: String
+    creditLimit: Int
+}
+
+extend type Mutation{
+    createCustomer(input: CreateCustomerInput!): Customer
+    deleteCustomer(customerId: ID!): Customer
+    updateCustomer(customerId: ID!, input: CreateCustomerInput): Customer
+}

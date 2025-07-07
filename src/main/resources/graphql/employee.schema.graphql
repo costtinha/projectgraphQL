@@ -1,0 +1,34 @@
+extend type Query{
+    employee: [Employee]
+    employeeById(employeeId: ID): Employee
+}
+
+type Employee{
+    employeeId: ID!
+    officeCode: Office!
+    reportsTo: Employee
+    lastName: String!
+    firstName: String!
+    extension: String
+    email: String!
+    jobTitle: String!
+    employees: [Employee]
+}
+
+
+input CreateEmployeeInput{
+    officeCode: ID!
+    reportsTo: ID!
+    lastName: String!
+    firstName: String!
+    extension: String
+    email: String!
+    jobTitle: String!
+}
+
+extend type Mutation {
+    createEmployee(input: CreateEmployeeInput!): Employee
+    deleteEmployee(employeeId: ID!): Employee
+    updateEmployee(employeeId: ID!, input: CreateEmployeeInput): Employee
+}
+

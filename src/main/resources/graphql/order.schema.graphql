@@ -1,0 +1,33 @@
+extend type Query {
+    orders: [Order]
+    orderById(oderId: ID!): Order
+}
+
+
+type Order{
+    orderId: ID!
+    customerId: Customer!
+    orderDate: String!
+    requiredDate: String!
+    shippedDate: String!
+    status: Int!
+    comments: String!
+    shipId: Shippers!
+    storeId: Store!
+    orderProducts: [OrderProduct]
+}
+
+input CreateOrderId{
+    customerId: ID!
+    orderDate: String!
+    requiredDate: String
+    shippedDate: String
+    status: Int!
+    comments: String!
+    shipId: ID!
+    storeId: ID!
+}
+
+extend type Mutation {
+
+}

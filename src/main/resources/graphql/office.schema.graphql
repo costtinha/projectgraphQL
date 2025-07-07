@@ -1,0 +1,33 @@
+extend type Query{
+    offices:[Office]
+    officesById(code: ID): Office
+}
+
+type Office{
+    code: ID!
+    city: String!
+    phone: String!
+    address: String!
+    state: String!
+    country: String!
+    postalCode: Int!
+    territory: String!
+    employees: [Employee]
+}
+input CreateOfficeInput{
+    city: String!
+    phone: String!
+    address: String!
+    state: String!
+    country: String!
+    postalCode: Int
+    territory: String
+}
+
+extend type Mutation{
+    createOffice(input: CreateOfficeInput!): Office!
+    deleteOffice(code: ID): Office
+    updateOffice(code: ID,input: CreateOfficeInput!): Office!
+
+
+}

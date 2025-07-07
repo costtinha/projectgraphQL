@@ -1,0 +1,24 @@
+extend type Query {
+    payments: [Payment]
+    paymentById(checkNum: ID!): Payment
+}
+
+
+type Payment{
+    checkNum: ID!
+    customerId: Customer!
+    paymentDate: String!
+    amount: Int!
+}
+
+input CreatePaymentInput{
+    customerId: ID!
+    paymentDate: String!
+    amount: Int!
+}
+
+extend type Mutation {
+    createPayment(input: CreatePaymentInput): Payment
+    deletePayment(checkNum: ID!): Payment
+    updatePayment(checkNum: ID!, input: CreatePaymentInput): Payment
+}

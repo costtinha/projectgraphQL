@@ -1,0 +1,23 @@
+extend type Query {
+    shippers: [Shippers]
+    shipperById(shipId: ID!): Shippers
+}
+
+
+type Shippers{
+    shipId: ID!
+    companyName: String!
+    phoneNumber: String!
+    shipperOrders: [Order]
+}
+
+input CreateShippersInput{
+    companyName: String!
+    phoneNumber: String!
+}
+
+extend type Mutation {
+    createShippers(input: CreateShippersInput): Shippers
+    deleteShippers(shipId: ID!): Shippers
+    updateShippers(shipId: ID!, input: CreateShippersInput): Shippers
+}
