@@ -1,0 +1,27 @@
+extend type Query {
+    productLines: [ProductLine]
+    productLineById(productLineId: ID!): ProductLine
+}
+
+type ProductLine {
+    productLineId: ID!
+    descInText: String
+    descInHTML: String
+    image: String
+    products: [Product]
+}
+
+input CreateProductLineInput {
+    descInText: String
+    descInHTML: String
+    image: String
+}
+
+extend type Mutation {
+    createProductLine(input: CreateProductLineInput!): ProductLine
+    deleteProductLine(productLineId: ID!): ProductLine
+    updateProductLine(
+        productLineId: ID!
+        input: CreateProductLineInput
+    ): ProductLine!
+}

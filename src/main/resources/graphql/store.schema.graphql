@@ -1,0 +1,20 @@
+extend type Query {
+    stores: [Store]
+    storeById(storeId: ID!): Store
+}
+
+type Store {
+    storeId: ID!
+    storeName: String
+    storeOrders: [Order]
+}
+
+input CreateStoreInput {
+    storeName: String
+}
+
+extend type Mutation {
+    createStore(input: CreateStoreInput!): Store!
+    deleteStore(storeId: ID!): Store
+    updateStore(storeId: ID!, input: CreateStoreInput): Store!
+}

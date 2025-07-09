@@ -60,9 +60,10 @@ public class Product {
         this.orderProducts = orderProducts;
     }
 
-    public Product(ProductLine productLine_id, String name, String vendor, String pdtDescription, int qntyInStock, BigDecimal buyPrice, String MSRP) {
+    public Product(ProductLine productLine_id, String name,int scale, String vendor, String pdtDescription, int qntyInStock, BigDecimal buyPrice, String MSRP) {
         this.productLineId = productLine_id;
         this.name = name;
+        this.scale = scale;
         this.vendor = vendor;
         this.pdtDescription = pdtDescription;
         this.qntyInStock = qntyInStock;

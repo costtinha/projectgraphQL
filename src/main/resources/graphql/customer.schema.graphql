@@ -22,7 +22,6 @@ type Customer{
 }
 
 input CreateCustomerInput{
-    customerId: ID!
     salesRepEmployeeNum: ID
     name: String!
     lastName: String

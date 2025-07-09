@@ -1,0 +1,23 @@
+extend type Query {
+    orderProducts: [OrderProduct]
+    orderProductById(oderProductId: ID!): OrderProduct
+}
+
+type OrderProduct {
+    orderProductId: ID!
+    orderId: Order!
+    productCode: Product!
+    qnty: Int
+    priceEach: Int
+}
+
+input CreateOrderProductInput {
+    orderId: ID!
+    productCode: ID!
+    qnty: Int
+    priceEach: Int
+}
+
+extend type Mutation {
+    createOrderProduct(input: CreateOrderProductInput): OrderProduct!
+}

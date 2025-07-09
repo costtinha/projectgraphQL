@@ -1,49 +1,6 @@
-
 schema {
     query: Query
     mutation: Mutation
 }
 type Query
 type Mutation
-
-
-
-
-
-
-
-type Store{
-    storeId: ID!
-    storeName: String
-    storeOrders: [Order]
-}
-type ProductLine{
-    productLineId: ID!
-    descInText: String
-    descInHTML: String
-    image: String
-    products: [Product]
-}
-
-type Product{
-    productCode: ID!
-    productLineId: ProductLine!
-    name: String
-    scale: Int
-    vendor: String
-    pdtDescription: String
-    qntyInStock: Int
-    buyPrice: Int
-    MSRP: String
-    orderProducts: [OrderProduct]
-}
-type OrderProduct{
-    orderProductId: ID!
-    orderId: Order!
-    productCode: Product!
-    qnty: Int
-    priceEach: Int
-
-}
-
-
