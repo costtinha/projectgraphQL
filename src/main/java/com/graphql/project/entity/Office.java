@@ -11,12 +11,12 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Office.findOfficeByCity", query = "SELECT o FROM Office o WHERE o.city = :city"),
         @NamedQuery(name = "Office.findOfficeByState", query = "SELECT o FROM Office o WHERE o.state = :state"),
-        @NamedQuery(name = "Office.findOfficeByCountry", query = "SELECT o FROM Office o WHERE o.country = :country")
-})
+        @NamedQuery(name = "Office.findOfficeByCountry", query = "SELECT o FROM Office o WHERE o.country = :country"),
+        @NamedQuery(name = "Office.findAllOffice", query = "SELECT o FROM Office o LEFT JOIN FETCH o.employees")})
 public class Office implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int code;
     private String city;
     private String phone;
@@ -29,7 +29,7 @@ public class Office implements Serializable {
             length = 100
     )
     private String territory;
-    @OneToMany(mappedBy = "OfficeCode")
+    @OneToMany(mappedBy = "officeCode",fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Employee> employees;
 
@@ -75,7 +75,7 @@ public class Office implements Serializable {
     }
 
     public void setCode(int code) {
-        code = code;
+        this.code = code;
     }
 
     public String getCity() {
@@ -83,7 +83,7 @@ public class Office implements Serializable {
     }
 
     public void setCity(String city) {
-        city = city;
+        this.city = city;
     }
 
     public String getPhone() {
@@ -91,7 +91,7 @@ public class Office implements Serializable {
     }
 
     public void setPhone(String phone) {
-        phone = phone;
+        this.phone = phone;
     }
 
     public String getAddress1() {
@@ -99,15 +99,7 @@ public class Office implements Serializable {
     }
 
     public void setAddress1(String address1) {
-        address1 = address1;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        state = state;
+        this.address1 = address1;
     }
 
     public String getAddress2() {
@@ -115,7 +107,15 @@ public class Office implements Serializable {
     }
 
     public void setAddress2(String address2) {
-        address2 = address2;
+        this.address2 = address2;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCountry() {
@@ -123,7 +123,7 @@ public class Office implements Serializable {
     }
 
     public void setCountry(String country) {
-        country = country;
+        this.country = country;
     }
 
     public int getPostalCode() {

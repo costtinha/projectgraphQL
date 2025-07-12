@@ -1,5 +1,5 @@
 extend type Query{
-    employee: [Employee]
+    employees: [Employee]
     employeeById(employeeId: ID): Employee
 }
 
@@ -12,7 +12,7 @@ type Employee{
     extension: String
     email: String!
     jobTitle: String!
-    employees: [Employee]
+    reports: [Employee]
 }
 
 

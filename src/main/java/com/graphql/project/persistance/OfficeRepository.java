@@ -10,4 +10,5 @@ public interface OfficeRepository  extends JpaRepository<Office, Integer> {
     List<Office> findOfficeByCity(String city);
     List<Office> findOfficeByState(String state);
     List<Office> findOfficeByCountry(String country);
+    List<Office> findAllOffice();
 }
