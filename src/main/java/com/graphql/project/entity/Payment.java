@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 })
 public class Payment {
     @Id
-    private String checknum;
+    private int checkNum;
 
     @ManyToOne
     @JsonBackReference
@@ -27,8 +27,8 @@ public class Payment {
     )
     private BigDecimal amount;
 
-    public Payment(String CheckNum, Customer customerId, LocalDateTime paymentDate, BigDecimal amount) {
-        this.checknum = CheckNum;
+    public Payment(int CheckNum, Customer customerId, LocalDateTime paymentDate, BigDecimal amount) {
+        this.checkNum = CheckNum;
         this.customerId = customerId;
         this.paymentDate = paymentDate;
         this.amount = amount;
@@ -37,12 +37,12 @@ public class Payment {
     public Payment() {
     }
 
-    public String getChecknum() {
-        return checknum;
+    public int getCheckNum() {
+        return checkNum;
     }
 
-    public void setChecknum(String checknum) {
-        this.checknum = checknum;
+    public void setCheckNum(int checkNum) {
+        this.checkNum = checkNum;
     }
 
     public Customer getCustomerId() {

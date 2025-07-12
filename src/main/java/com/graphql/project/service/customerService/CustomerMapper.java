@@ -4,6 +4,8 @@ import com.graphql.project.dtos.CreateCustomer;
 import com.graphql.project.entity.Customer;
 import com.graphql.project.entity.Employee;
 
+import java.util.Collections;
+
 public class CustomerMapper {
     public Customer customerDtoToCustomer(CreateCustomer dto){
         Customer customer = new Customer();
@@ -20,6 +22,8 @@ public class CustomerMapper {
         employee.setEmployeeId(dto.salesRepEmployeeNum());
         customer.setSalesRepEmployeeNum(employee);
         customer.setState(dto.state());
+        customer.setPayments(Collections.emptyList());
+        customer.setCustomerOrders(Collections.emptyList());
         return customer;
 
     }

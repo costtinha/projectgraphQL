@@ -1,6 +1,6 @@
 extend type Query {
     orders: [Order]
-    orderById(oderId: ID!): Order
+    orderById(orderId: ID!): Order
 }
 
 
@@ -17,7 +17,7 @@ type Order{
     orderProducts: [OrderProduct]
 }
 
-input CreateOrderId{
+input CreateOrderInput{
     customerId: ID!
     orderDate: String!
     requiredDate: String
@@ -29,5 +29,8 @@ input CreateOrderId{
 }
 
 extend type Mutation {
+    createOrders(input: CreateOrderInput!): Order!
+    deleteOrder(orderId: ID!): Order
+    updateOrder(orderId: ID!, input: CreateOrderInput!): Order!
 
 }

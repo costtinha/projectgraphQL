@@ -10,6 +10,6 @@ public record CreateOrder(Integer customerId,
                           LocalDateTime requiredDate,
                           LocalDateTime shippedDate,
                           int status, String comments,
-                          Shippers shippingId,
-                          Store storeId) {
+                          int shippingId,
+                          int storeId) {
 }
