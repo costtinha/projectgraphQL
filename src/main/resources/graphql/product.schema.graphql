@@ -13,7 +13,7 @@ type Product {
     qntyInStock: Int
     buyPrice: Int
     MSRP: String
-    orderProducts: [OrderProduct]
+    productOrderProducts: [OrderProduct]
 }
 
 input CreateProductInput{
@@ -30,5 +30,5 @@ input CreateProductInput{
 extend type Mutation{
     createProduct(input: CreateProductInput): Product
     deleteProduct(productCode: ID!): Product
-    updateProduct(productCode: ID!, input CreateProductInput): Product!
+    updateProduct(productCode: ID!, input: CreateProductInput): Product!
 }

@@ -1,0 +1,8 @@
+type OrderProductKey{
+    orderId: ID!
+    productCode: ID!
+}
+input OrderProductKeyInput{
+    orderId: ID!
+    productCode: ID!
+}

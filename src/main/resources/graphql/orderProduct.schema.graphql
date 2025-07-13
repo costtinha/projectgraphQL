@@ -1,10 +1,10 @@
 extend type Query {
     orderProducts: [OrderProduct]
-    orderProductById(oderProductId: ID!): OrderProduct
+    orderProductById(orderProductId: OrderProductKeyInput): OrderProduct
 }
 
 type OrderProduct {
-    orderProductId: ID!
+    orderProductId: OrderProductKey
     orderId: Order!
     productCode: Product!
     qnty: Int
@@ -17,7 +17,14 @@ input CreateOrderProductInput {
     qnty: Int
     priceEach: Int
 }
+input UpdateOrderProduct{
+    qnty: Int
+    priceEach: Int
+
+}
 
 extend type Mutation {
     createOrderProduct(input: CreateOrderProductInput): OrderProduct!
+    deleteOrderProduct(input: OrderProductKeyInput): OrderProduct!
+    updateOrderProduct(orderId: ID!, productCode: ID!,input :UpdateOrderProduct!): OrderProduct
 }

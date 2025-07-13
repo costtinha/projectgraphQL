@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class Order_Product {
+public class OrderProduct {
     @EmbeddedId
     private OrderProductKey orderProductId;
 
@@ -34,11 +34,11 @@ public class Order_Product {
     )
     private BigDecimal priceEach;
 
-    public Order_Product(OrderProductKey orderProductId,
-                         Order orderId,
-                         Product productId,
-                         int qty,
-                         BigDecimal priceEach) {
+    public OrderProduct(OrderProductKey orderProductId,
+                        Order orderId,
+                        Product productId,
+                        int qty,
+                        BigDecimal priceEach) {
         this.orderProductId = orderProductId;
         this.orderId = orderId;
         this.productId = productId;
@@ -46,7 +46,7 @@ public class Order_Product {
         this.priceEach = priceEach;
     }
 
-    public Order_Product() {
+    public OrderProduct() {
     }
 
     public OrderProductKey getOrderProductId() {

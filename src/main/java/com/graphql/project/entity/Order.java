@@ -46,7 +46,7 @@ public class Order {
 
     @OneToMany(mappedBy = "OrderId")
     @JsonManagedReference
-    private List<Order_Product> orderProducts;
+    private List<OrderProduct> orderProducts;
 
     public Order(int orderId, Customer customerId,
                  LocalDateTime orderDate,
@@ -55,7 +55,7 @@ public class Order {
                  int status, String comments,
                  Shippers shippingId,
                  Store storeId,
-                 List<Order_Product> orderProducts) {
+                 List<OrderProduct> orderProducts) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.orderDate = orderDate;
@@ -159,11 +159,11 @@ public class Order {
         this.storeId = storeId;
     }
 
-    public List<Order_Product> getOrderProducts() {
+    public List<OrderProduct> getOrderProducts() {
         return orderProducts;
     }
 
-    public void setOrderProducts(List<Order_Product> orderProducts) {
+    public void setOrderProducts(List<OrderProduct> orderProducts) {
         this.orderProducts = orderProducts;
     }
 }

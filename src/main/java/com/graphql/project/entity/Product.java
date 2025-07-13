@@ -38,7 +38,7 @@ public class Product {
 
     @OneToMany(mappedBy = "ProductId")
     @JsonManagedReference
-    private List<Order_Product> orderProducts;
+    private List<OrderProduct> productOrderProducts;
 
 
     public Product(int productCode,
@@ -47,7 +47,7 @@ public class Product {
                    String pdtDescription, int scale,
                    int qntyInStock, BigDecimal buyPrice,
                    String MSRP,
-                   List<Order_Product> orderProducts) {
+                   List<OrderProduct> productOrderProducts) {
         this.productCode = productCode;
         this.productLineId = productLineId;
         this.name = name;
@@ -57,7 +57,7 @@ public class Product {
         this.qntyInStock = qntyInStock;
         this.buyPrice = buyPrice;
         this.MSRP = MSRP;
-        this.orderProducts = orderProducts;
+        this.productOrderProducts = productOrderProducts;
     }
 
     public Product(ProductLine productLine_id, String name,int scale, String vendor, String pdtDescription, int qntyInStock, BigDecimal buyPrice, String MSRP) {
@@ -138,12 +138,12 @@ public class Product {
         this.MSRP = MSRP;
     }
 
-    public List<Order_Product> getOrderProducts() {
-        return orderProducts;
+    public List<OrderProduct> getProductOrderProducts() {
+        return productOrderProducts;
     }
 
-    public void setOrderProducts(List<Order_Product> orderProducts) {
-        this.orderProducts = orderProducts;
+    public void setProductOrderProducts(List<OrderProduct> productOrderProducts) {
+        this.productOrderProducts = productOrderProducts;
     }
 
     public int getScale() {
