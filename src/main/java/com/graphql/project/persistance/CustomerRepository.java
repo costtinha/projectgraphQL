@@ -12,4 +12,5 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     List<Customer> findCustomerByName(@Param("firstName") String firstName, @Param("lastName") String lastName);
     List<Customer> findCustomerByState(String state);
     List<Customer> findCustomerByCity(String city);
+    List<Customer> findCustomerAll();
 }

@@ -10,4 +10,5 @@ import java.util.List;
 @Repository("ProductLineJpaRepository")
 public interface ProductLineRepository extends JpaRepository<ProductLine,Integer> {
     List<ProductLine> findProductLineByImage(@Param("image") String image);
+    List<ProductLine> findProductLineAll();
 }

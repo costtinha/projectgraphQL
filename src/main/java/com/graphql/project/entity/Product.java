@@ -10,7 +10,8 @@ import java.util.List;
 @Entity
 @NamedQueries(
         {
-                @NamedQuery(name="Product.findProductByVendor ", query = "SELECT p FROM Product p  WHERE p.vendor = :vendor")
+                @NamedQuery(name="Product.findProductByVendor ", query = "SELECT p FROM Product p  WHERE p.vendor = :vendor"),
+                @NamedQuery(name = "Product.findProductAll", query = "SELECT p FROM Product p LEFT JOIN FETCH p.productOrderProducts")
         }
 )
 public class Product {
@@ -36,7 +37,7 @@ public class Product {
     private BigDecimal buyPrice;
     private String MSRP;
 
-    @OneToMany(mappedBy = "ProductId")
+    @OneToMany(mappedBy = "ProductId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<OrderProduct> productOrderProducts;
 

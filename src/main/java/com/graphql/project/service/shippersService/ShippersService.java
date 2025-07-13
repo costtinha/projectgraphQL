@@ -18,7 +18,7 @@ public class ShippersService {
     }
 
     public List<Shippers> findShippers() {
-        return repository.findAll();
+        return repository.findShippersAll();
 
     }
 
@@ -39,7 +39,8 @@ public class ShippersService {
 
     public Shippers updateShippers(int id, CreateShipper dto) {
         Shippers shippers = findShipperById(id);
-        shippers = mapper.shippersDtoToShippers(dto);
+        shippers.setCompanyName(dto.companyName());
+        shippers.setPhoneNumber(dto.phoneNumber());
         return repository.save(shippers);
     }
 }

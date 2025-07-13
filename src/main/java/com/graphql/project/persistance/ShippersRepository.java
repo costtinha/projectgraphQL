@@ -9,4 +9,5 @@ import java.util.List;
 @Repository("ShippersJpaRepository")
 public interface ShippersRepository extends JpaRepository<Shippers,Integer> {
     List<Shippers> findShippersByCompanyName(String companyName);
+    List<Shippers> findShippersAll();
 }

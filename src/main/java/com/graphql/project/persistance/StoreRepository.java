@@ -9,4 +9,5 @@ import java.util.List;
 @Repository("StoreJpaRepository")
 public interface StoreRepository extends JpaRepository<Store,Integer> {
     List<Store> findStoreByName(String storeName);
+    List<Store> findStoreAll();
 }

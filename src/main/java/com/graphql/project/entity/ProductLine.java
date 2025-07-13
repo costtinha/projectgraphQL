@@ -9,7 +9,9 @@ import java.util.List;
 @NamedQueries(
         {
                 @NamedQuery(name ="ProductLine.findProductLineByImage",
-                        query = "SELECT p FROM ProductLine p WHERE p.image = :image")
+                        query = "SELECT p FROM ProductLine p WHERE p.image = :image"),
+                @NamedQuery(name = "ProductLine.findProductLineAll",
+                        query ="SELECT p FROM ProductLine p LEFT JOIN FETCH p.products" )
         }
 )
 public class ProductLine {
@@ -23,7 +25,7 @@ public class ProductLine {
             length = 100
     )
     private String image;
-    @OneToMany(mappedBy = "productLine_id")
+    @OneToMany(mappedBy = "productLine_id",fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Product> products;
 

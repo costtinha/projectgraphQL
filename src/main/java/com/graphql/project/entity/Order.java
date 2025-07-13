@@ -10,7 +10,8 @@ import java.util.List;
 @Entity
 @Table(name = "\"order\"")
 @NamedQueries({
-        @NamedQuery(name = "order.findOrderByStatus", query = "SELECT o FROM Order o WHERE o.status = :status")
+        @NamedQuery(name = "Order.findOrderByStatus", query = "SELECT o FROM Order o WHERE o.status = :status"),
+        @NamedQuery(name = "Order.findOrderAll", query = "SELECT o FROM Order o LEFT JOIN FETCH o.orderProducts")
 })
 public class Order {
 
@@ -44,7 +45,7 @@ public class Order {
     )
     private Store storeId;
 
-    @OneToMany(mappedBy = "OrderId")
+    @OneToMany(mappedBy = "OrderId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<OrderProduct> orderProducts;
 

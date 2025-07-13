@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Employee.findEmployeeByJobTitle", query = "SELECT e FROM Employee e WHERE e.jobTitle = :jobTitle"),
-        @NamedQuery(name = "Employee.findEmployeeByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email")
+        @NamedQuery(name = "Employee.findEmployeeByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
+        @NamedQuery(name = "Employee.findEmployeeAll", query = "SELECT e FROM Employee e LEFT JOIN FETCH e.employees LEFT JOIN FETCH e.customers")
 })
 public class Employee {
     @Id
@@ -36,11 +37,11 @@ public class Employee {
     )
     private String jobTitle;
 
-    @OneToMany(mappedBy = "reportsTo")
+    @OneToMany(mappedBy = "reportsTo",fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Employee> employees;
 
-    @OneToMany(mappedBy = "SalesRepEmployeeNum")
+    @OneToMany(mappedBy = "SalesRepEmployeeNum",fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Customer> customers;
 

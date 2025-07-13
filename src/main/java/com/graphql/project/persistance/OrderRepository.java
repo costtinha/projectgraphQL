@@ -11,4 +11,5 @@ import java.util.List;
 @Repository("OrderJpaRepository")
 public interface OrderRepository extends JpaRepository<Order,Integer> {
     List<Order> findOrderByStatus(@Param("status") int status);
+    List<Order> findOrderAll();
 }

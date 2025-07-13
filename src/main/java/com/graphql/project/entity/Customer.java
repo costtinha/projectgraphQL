@@ -12,7 +12,8 @@
             {
                     @NamedQuery(name = "Customer.findCustomerByName", query = "SELECT c FROM Customer c WHERE c.firstName = :firstName AND c.lastName = :lastName"),
                     @NamedQuery(name = "Customer.findCustomerByState", query = "SELECT c FROM Customer c WHERE c.state = :state"),
-                    @NamedQuery(name = "Customer.findCustomerByCity", query = "SELECT c FROM Customer c WHERE c.city = :city" )
+                    @NamedQuery(name = "Customer.findCustomerByCity", query = "SELECT c FROM Customer c WHERE c.city = :city" ),
+                    @NamedQuery(name = "Customer.findCustomerAll", query = "SELECT C FROM Customer c LEFT JOIN FETCH e.payments LEFT JOIN FETCH e.customerOrders")
             }
     )
     public class Customer {
@@ -37,12 +38,12 @@
         @Column(precision = 19, scale = 0)
         private BigDecimal creditLimit;
 
-        @OneToMany(mappedBy = "CustomerId")
+        @OneToMany(mappedBy = "CustomerId", fetch = FetchType.LAZY)
         @JsonManagedReference
         private List<Payment> payments;
 
 
-        @OneToMany(mappedBy = "CustomerId")
+        @OneToMany(mappedBy = "CustomerId", fetch = FetchType.LAZY)
         @JsonManagedReference
         private List<Order> customerOrders;
 

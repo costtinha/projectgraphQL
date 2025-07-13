@@ -18,7 +18,7 @@ public class ProductLineService {
     }
 
     public List<ProductLine> findProductLines() {
-        return repository.findAll();
+        return repository.findProductLineAll();
     }
 
     public ProductLine findProductLinesById(int id) {
@@ -38,7 +38,9 @@ public class ProductLineService {
 
     public ProductLine updateProductLine(int id, CreateProductLine dto) {
         ProductLine productLine = findProductLinesById(id);
-        productLine = mapper.productLineDtoToProductLine(dto);
+        productLine.setImage(dto.image());
+        productLine.setDescInHTML(dto.descInHTML());
+        productLine.setDescInText(dto.descInText());
         return repository.save(productLine);
     }
 }

@@ -8,7 +8,9 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Shippers.findShippersByCompanyName",
-                query = "SELECT s FROM Shippers s WHERE s.companyName = :companyName")
+                query = "SELECT s FROM Shippers s WHERE s.companyName = :companyName"),
+        @NamedQuery(name = "Shippers.findShippersAll",
+                query = "SELECT s FROM Shippers s LEFT JOIN FETCH s.shipperOrders")
 })
 public class Shippers {
     @Id
@@ -17,7 +19,7 @@ public class Shippers {
     private String companyName;
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "ShippingId")
+    @OneToMany(mappedBy = "ShippingId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Order> shipperOrders;
 

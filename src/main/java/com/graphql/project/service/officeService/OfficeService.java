@@ -41,7 +41,13 @@ public class OfficeService {
 
     public Office updateOffice(int code, CreateOffice dto) {
         Office office = findOfficeById(code);
-        office = mapper.officeDtoToOffice(dto);
+        office.setAddress1(dto.address1());
+        office.setCountry(dto.country());
+        office.setCity(dto.city());
+        office.setPhone(dto.phone());
+        office.setState(dto.state());
+        office.setPostalCode(dto.postalCode());
+        office.setTerritory(dto.territory());
         repository.save(office);
         return office;
     }

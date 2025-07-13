@@ -1,10 +1,14 @@
 package com.graphql.project.service.orderService;
 
 import com.graphql.project.dtos.CreateOrder;
+import com.graphql.project.entity.Customer;
 import com.graphql.project.entity.Order;
+import com.graphql.project.entity.Shippers;
+import com.graphql.project.entity.Store;
 import com.graphql.project.persistance.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,7 +22,7 @@ public class OrderService {
     }
 
     public List<Order> findOrders() {
-        return repository.findAll();
+        return repository.findOrderAll();
     }
 
     public Order findOrderById(int id) {
@@ -38,7 +42,20 @@ public class OrderService {
 
     public Order updateOrder(int id, CreateOrder dto) {
         Order order = findOrderById(id);
-        order = mapper.orderDtoToOrder(dto);
+        order.setOrderDate(dto.orderDate());
+        order.setComments(dto.comments());
+        order.setRequiredDate(dto.requiredDate());
+        order.setShippedDate(dto.shippedDate());
+        order.setStatus(dto.status());
+        Customer customer = new Customer();
+        customer.setCustomerId(dto.customerId());
+        order.setCustomerId(customer);
+        Shippers shippers = new Shippers();
+        shippers.setShipId(dto.shippingId());
+        order.setShippingId(shippers);
+        Store store = new Store();
+        store.setStoreId(dto.storeId());
+        order.setStoreId(store);
         return repository.save(order);
     }
 }

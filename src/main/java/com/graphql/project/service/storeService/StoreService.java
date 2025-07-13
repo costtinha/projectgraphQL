@@ -18,7 +18,7 @@ public class StoreService {
     }
 
     public List<Store> findStores() {
-        return repository.findAll();
+        return repository.findStoreAll();
     }
 
     public Store findStoreById(int id) {
@@ -38,7 +38,7 @@ public class StoreService {
 
     public Store updateStore(int id, CreateStore dto) {
         Store store = findStoreById(id);
-        store = mapper.storeDtoToStore(dto);
+        store.setStoreName(dto.storeName());
         return repository.save(store);
     }
 }

@@ -1,6 +1,7 @@
 package com.graphql.project.service.paymentService;
 
 import com.graphql.project.dtos.CreatePayment;
+import com.graphql.project.entity.Customer;
 import com.graphql.project.entity.Payment;
 import com.graphql.project.persistance.PaymentRepository;
 
@@ -40,7 +41,11 @@ public class PaymentService {
 
     public Payment updatePayment(int id, CreatePayment dto) {
         Payment payment = findPaymentById(id);
-        payment = mapper.paymentDtoToPayment(dto);
+        payment.setPaymentDate(dto.paymentDate());
+        payment.setAmount(dto.amount());
+        Customer customer = new Customer();
+        customer.setCustomerId(dto.customerId());
+        payment.setCustomerId(customer);
         return repository.save(payment);
     }
 }
