@@ -19,7 +19,7 @@ public class Store {
     private int storeId;
     private String storeName;
 
-    @OneToMany(mappedBy = "StoreId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "storeId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Order> storeOrders;
 

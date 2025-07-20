@@ -7,7 +7,7 @@ import com.graphql.project.entity.Product;
 import java.math.BigDecimal;
 
 public record CreateOrderProduct(int orderId,
-                                 int productId,
+                                 int productCode,
                                  int qty,
                                  BigDecimal priceEach) {
 }

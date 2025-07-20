@@ -3,9 +3,11 @@ package com.graphql.project.service.customerService;
 import com.graphql.project.dtos.CreateCustomer;
 import com.graphql.project.entity.Customer;
 import com.graphql.project.entity.Employee;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 
+@Component
 public class CustomerMapper {
     public Customer customerDtoToCustomer(CreateCustomer dto){
         Customer customer = new Customer();
@@ -18,9 +20,11 @@ public class CustomerMapper {
         customer.setPhone(dto.phone());
         customer.setCreditLimit(dto.creditLimit());
         customer.setPostalCode(dto.postalCode());
-        Employee employee = new Employee();
-        employee.setEmployeeId(dto.salesRepEmployeeNum());
-        customer.setSalesRepEmployeeNum(employee);
+        if(dto.salesRepEmployeeNum() != null) {
+            Employee employee = new Employee();
+            employee.setEmployeeId(dto.salesRepEmployeeNum());
+            customer.setSalesRepEmployeeNum(employee);
+        }
         customer.setState(dto.state());
         customer.setPayments(Collections.emptyList());
         customer.setCustomerOrders(Collections.emptyList());

@@ -41,7 +41,7 @@ public class OfficeService {
 
     public Office updateOffice(int code, CreateOffice dto) {
         Office office = findOfficeById(code);
-        office.setAddress1(dto.address1());
+        office.setAddress1(dto.address());
         office.setCountry(dto.country());
         office.setCity(dto.city());
         office.setPhone(dto.phone());

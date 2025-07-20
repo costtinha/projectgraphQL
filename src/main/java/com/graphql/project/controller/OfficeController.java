@@ -29,7 +29,7 @@ public class OfficeController {
     }
 
     @MutationMapping
-    public Office createOffice(@Argument("CreateOfficeInput")CreateOffice dto){
+    public Office createOffice(@Argument("input")CreateOffice dto){
         return service.createOffice(dto);
     }
 
@@ -39,7 +39,7 @@ public class OfficeController {
     }
 
     @MutationMapping
-    public Office updateOffice(@Argument("code") int code, @Argument("CreateOfficeInput") CreateOffice dto){
+    public Office updateOffice(@Argument("code") int code, @Argument("input") CreateOffice dto){
         return service.updateOffice(code,dto);
     }
 

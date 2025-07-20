@@ -1,13 +1,10 @@
 package com.graphql.project.service.orderProductService;
 
 import com.graphql.project.dtos.CreateOrderProduct;
-import com.graphql.project.dtos.OrderProductKeyInput;
 import com.graphql.project.dtos.UpdateOrderProduct;
 import com.graphql.project.entity.OrderProduct;
 import com.graphql.project.entity.OrderProductKey;
 import com.graphql.project.persistance.OrderProductRepository;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,10 +23,11 @@ public class OrderProductService {
         return repository.findAll();
     }
 
-    public OrderProduct findOrderProductById(OrderProductKeyInput id) {
-        return repository.findById(new OrderProductKey(id.orderId(), id.productCode()))
+    public OrderProduct findOrderProductById(int orderID,int productCode) {
+        OrderProductKey key = new OrderProductKey(orderID,productCode);
+        return repository.findById(key)
                 .orElseThrow(() -> new RuntimeException("Order product with id orderId: "
-                        + id.orderId() + " productCode: "+ id.productCode() +
+                        + orderID + " productCode: "+ productCode +
                         " not found"));
     }
 
@@ -38,14 +36,14 @@ public class OrderProductService {
         return repository.save(mapper.OrderProductDtoToOrderProduct(dto));
     }
 
-    public OrderProduct deleteOrderProductById(OrderProductKeyInput id) {
-        OrderProduct op = findOrderProductById(id);
+    public OrderProduct deleteOrderProductById(int orderID, int productCode) {
+        OrderProduct op = findOrderProductById(orderID,productCode);
         repository.delete(op);
         return op;
     }
 
     public OrderProduct updateOrderProduct(int orderId, int productCode, UpdateOrderProduct dto) {
-        OrderProduct orderProduct = findOrderProductById(new OrderProductKeyInput(orderId,productCode));
+        OrderProduct orderProduct = findOrderProductById(orderId,productCode);
         orderProduct.setQty(dto.qnty());
         orderProduct.setPriceEach(dto.priceEach());
         return repository.save(orderProduct);

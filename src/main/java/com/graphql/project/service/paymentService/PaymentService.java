@@ -7,6 +7,9 @@ import com.graphql.project.persistance.PaymentRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -41,8 +44,11 @@ public class PaymentService {
 
     public Payment updatePayment(int id, CreatePayment dto) {
         Payment payment = findPaymentById(id);
-        payment.setPaymentDate(dto.paymentDate());
-        payment.setAmount(dto.amount());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(dto.paymentDate(),formatter);
+        payment.setPaymentDate(dateTime);
+        BigDecimal bigDecimal = new BigDecimal(dto.amount());
+        payment.setAmount(bigDecimal);
         Customer customer = new Customer();
         customer.setCustomerId(dto.customerId());
         payment.setCustomerId(customer);

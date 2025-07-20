@@ -37,7 +37,7 @@ public class Product {
     private BigDecimal buyPrice;
     private String MSRP;
 
-    @OneToMany(mappedBy = "ProductId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<OrderProduct> productOrderProducts;
 

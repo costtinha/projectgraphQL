@@ -6,7 +6,6 @@ extend type Query {
 type Customer{
     customerId: ID!
     salesRepEmployeeNum: Employee
-    name: String!
     lastName: String!
     firstName: String
     phone: String!
@@ -23,17 +22,16 @@ type Customer{
 
 input CreateCustomerInput{
     salesRepEmployeeNum: ID
-    name: String!
-    lastName: String
-    firstName: String
-    phone: String
+    lastName: String!
+    firstName: String!
+    phone: String!
     address1: String!
     address2: String
-    city: String
-    state: String
+    city: String!
+    state: String!
     postalCode: Int
-    country: String
-    creditLimit: Int
+    country: String!
+    creditLimit: Int!
 }
 
 extend type Mutation{

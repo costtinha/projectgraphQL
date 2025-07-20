@@ -29,7 +29,7 @@ public class ProductLineController {
     }
 
     @MutationMapping
-    public ProductLine createProductLine(@Argument("CreateProductLineInput")CreateProductLine dto){
+    public ProductLine createProductLine(@Argument("input")CreateProductLine dto){
         return service.createProductLine(dto);
     }
 
@@ -40,7 +40,7 @@ public class ProductLineController {
 
     @MutationMapping
     public ProductLine updateProductLine(@Argument("productLineId")int id,
-                                         @Argument("CreateProductLineInput")
+                                         @Argument("input")
                                          CreateProductLine dto){
         return service.updateProductLine(id,dto);
     }

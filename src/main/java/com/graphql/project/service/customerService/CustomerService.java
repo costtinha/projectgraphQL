@@ -50,9 +50,11 @@ public class CustomerService {
         customer.setPhone(dto.phone());
         customer.setCreditLimit(dto.creditLimit());
         customer.setPostalCode(dto.postalCode());
-        Employee employee = new Employee();
-        employee.setEmployeeId(dto.salesRepEmployeeNum());
-        customer.setSalesRepEmployeeNum(employee);
+        if(dto.salesRepEmployeeNum() != null) {
+            Employee employee = new Employee();
+            employee.setEmployeeId(dto.salesRepEmployeeNum());
+            customer.setSalesRepEmployeeNum(employee);
+        }
         customer.setState(dto.state());
         customer.setPayments(Collections.emptyList());
         return repository.save(customer);

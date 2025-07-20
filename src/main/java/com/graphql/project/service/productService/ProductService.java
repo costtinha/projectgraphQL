@@ -3,20 +3,23 @@ package com.graphql.project.service.productService;
 import com.graphql.project.dtos.CreateProduct;
 import com.graphql.project.entity.Product;
 import com.graphql.project.entity.ProductLine;
+import com.graphql.project.persistance.ProductLineRepository;
 import com.graphql.project.persistance.ProductRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 public class ProductService {
     private final ProductRepository repository;
     private final ProductMapper mapper;
+    private final ProductLineRepository productLineRepository;
 
-    public ProductService(ProductRepository repository, ProductMapper mapper) {
+    public ProductService(ProductRepository repository, ProductMapper mapper, ProductLineRepository productLineRepository) {
         this.repository = repository;
         this.mapper = mapper;
+        this.productLineRepository = productLineRepository;
     }
 
     public List<Product> findProducts() {
@@ -29,7 +32,11 @@ public class ProductService {
     }
 
     public Product createProduct(CreateProduct dto) {
-        return repository.save(mapper.productDtoToProduct(dto));
+        Product product = mapper.productDtoToProduct(dto);
+        ProductLine productLine = productLineRepository.findById(dto.productLineId())
+                .orElseThrow(() -> new RuntimeException("ProductLine with id " + dto.productLineId() + " not found"));
+        product.setProductLineId(productLine);
+        return repository.save(product);
     }
 
     public Product deleteProductById(int id) {
@@ -42,13 +49,14 @@ public class ProductService {
         Product product = findProductById(id);
         product.setMSRP(dto.MSRP());
         product.setName(dto.name());
-        product.setBuyPrice(dto.buyPrice());
+        BigDecimal buyPrice = new BigDecimal(dto.buyPrice());
+        product.setBuyPrice(buyPrice);
         product.setQntyInStock(dto.qntyInStock());
         product.setPdtDescription(dto.pdtDescription());
         product.setScale(dto.scale());
         product.setVendor(dto.vendor());
-        ProductLine productLine = new ProductLine();
-        productLine.setProductLineId(dto.productLine_id());
+        ProductLine productLine = productLineRepository.findById(dto.productLineId())
+                .orElseThrow(() -> new RuntimeException("ProductLine with id " + dto.productLineId() + " not found"));
         product.setProductLineId(productLine);
         return repository.save(product);
     }

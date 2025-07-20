@@ -10,7 +10,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Employee.findEmployeeByJobTitle", query = "SELECT e FROM Employee e WHERE e.jobTitle = :jobTitle"),
         @NamedQuery(name = "Employee.findEmployeeByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
-        @NamedQuery(name = "Employee.findEmployeeAll", query = "SELECT e FROM Employee e LEFT JOIN FETCH e.employees LEFT JOIN FETCH e.customers")
+        @NamedQuery(name = "Employee.findEmployeeAll", query = "SELECT e FROM Employee e LEFT JOIN FETCH e.employees")
 })
 public class Employee {
     @Id
@@ -41,7 +41,7 @@ public class Employee {
     @JsonManagedReference
     private List<Employee> employees;
 
-    @OneToMany(mappedBy = "SalesRepEmployeeNum",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "salesRepEmployeeNum",fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Customer> customers;
 

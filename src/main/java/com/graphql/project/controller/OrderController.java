@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @MutationMapping
-    public Order createOrder(@Argument("CreateOrderInput") CreateOrder dto){
+    public Order createOrders(@Argument("input") CreateOrder dto){
         return service.createOrder(dto);
     }
 
@@ -43,7 +43,7 @@ public class OrderController {
     }
 
     @MutationMapping
-    public Order updateOrder(@Argument("orderId") int id, @Argument("CreateOrderInput") CreateOrder dto){
+    public Order updateOrder(@Argument("orderId") int id, @Argument("input") CreateOrder dto){
         return service.updateOrder(id,dto);
     }
 

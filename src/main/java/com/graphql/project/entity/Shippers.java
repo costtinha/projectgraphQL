@@ -19,7 +19,7 @@ public class Shippers {
     private String companyName;
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "ShippingId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "shipId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Order> shipperOrders;
 

@@ -29,7 +29,7 @@ public class StoreController {
     }
 
     @MutationMapping
-    public Store createStore(@Argument("CreateStoreInput")CreateStore dto){
+    public Store createStore(@Argument("input")CreateStore dto){
         return service.createStore(dto);
     }
 
@@ -39,7 +39,7 @@ public class StoreController {
     }
 
     @MutationMapping
-    public Store updateStore(@Argument("storeId")int id, @Argument("CreateStoreInput") CreateStore dto){
+    public Store updateStore(@Argument("storeId")int id, @Argument("input") CreateStore dto){
         return service.updateStore(id,dto);
     }
 }

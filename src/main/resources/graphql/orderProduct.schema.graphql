@@ -1,10 +1,10 @@
 extend type Query {
     orderProducts: [OrderProduct]
-    orderProductById(orderProductId: OrderProductKeyInput): OrderProduct
+    orderProductById(orderId: ID!, productCode: ID!): OrderProduct
 }
 
 type OrderProduct {
-    orderProductId: OrderProductKey
+    orderProductId: OrderProductKey!
     orderId: Order!
     productCode: Product!
     qnty: Int

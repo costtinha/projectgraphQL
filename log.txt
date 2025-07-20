@@ -1,0 +1,427 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 352B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 261B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/openjdk:21-jdk-slim
+#3 DONE 1.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/5] FROM docker.io/library/openjdk:21-jdk-slim@sha256:7072053847a8a05d7f3a14ebc778a90b38c50ce7e8f199382128a53385160688
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 8.33kB 0.0s done
+#6 DONE 0.0s
+
+#7 [3/5] COPY pom.xml .
+#7 CACHED
+
+#8 [2/5] WORKDIR /app
+#8 CACHED
+
+#9 [4/5] COPY src ./src
+#9 CACHED
+
+#10 [5/5] RUN apt-get update && apt-get install -y maven && mvn clean package -DskipTests
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:d441c7e596b11ce2cd14a7ba89d2c1ef9aafaa1e23af53d5fca6cb545f922a86 done
+#11 naming to docker.io/library/project-app done
+#11 DONE 0.0s
+
+#12 resolving provenance for metadata file
+#12 DONE 0.0s
+Attaching to app-1, postgres-1
+postgres-1  | The files belonging to this database system will be owned by user "postgres".
+postgres-1  | This user must also own the server process.
+postgres-1  | 
+postgres-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres-1  | The default database encoding has accordingly been set to "UTF8".
+postgres-1  | The default text search configuration will be set to "english".
+postgres-1  | 
+postgres-1  | Data page checksums are disabled.
+postgres-1  | 
+postgres-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres-1  | creating subdirectories ... ok
+postgres-1  | selecting dynamic shared memory implementation ... posix
+postgres-1  | selecting default max_connections ... 100
+postgres-1  | selecting default shared_buffers ... 128MB
+postgres-1  | selecting default time zone ... Etc/UTC
+postgres-1  | creating configuration files ... ok
+postgres-1  | running bootstrap script ... ok
+postgres-1  | performing post-bootstrap initialization ... ok
+postgres-1  | syncing data to disk ... ok
+postgres-1  | 
+postgres-1  | 
+postgres-1  | Success. You can now start the database server using:
+postgres-1  | 
+postgres-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres-1  | 
+postgres-1  | waiting for server to start....2025-07-15 17:27:33.451 UTC [48] LOG:  starting PostgreSQL 16.8 (Debian 16.8-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+postgres-1  | 2025-07-15 17:27:33.452 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1  | 2025-07-15 17:27:33.458 UTC [51] LOG:  database system was shut down at 2025-07-15 17:27:33 UTC
+postgres-1  | 2025-07-15 17:27:33.466 UTC [48] LOG:  database system is ready to accept connections
+postgres-1  |  done
+postgres-1  | server started
+postgres-1  | CREATE DATABASE
+postgres-1  | 
+postgres-1  | 
+postgres-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres-1  | 
+postgres-1  | waiting for server to shut down...2025-07-15 17:27:33.694 UTC [48] LOG:  received fast shutdown request
+postgres-1  | .2025-07-15 17:27:33.696 UTC [48] LOG:  aborting any active transactions
+postgres-1  | 2025-07-15 17:27:33.700 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+postgres-1  | 2025-07-15 17:27:33.700 UTC [49] LOG:  shutting down
+postgres-1  | 2025-07-15 17:27:33.701 UTC [49] LOG:  checkpoint starting: shutdown immediate
+postgres-1  | 2025-07-15 17:27:33.745 UTC [49] LOG:  checkpoint complete: wrote 922 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.017 s, sync=0.022 s, total=0.045 s; sync files=301, longest=0.002 s, average=0.001 s; distance=4255 kB, estimate=4255 kB; lsn=0/1912100, redo lsn=0/1912100
+postgres-1  | 2025-07-15 17:27:33.754 UTC [48] LOG:  database system is shut down
+postgres-1  |  done
+postgres-1  | server stopped
+postgres-1  | 
+postgres-1  | PostgreSQL init process complete; ready for start up.
+postgres-1  | 
+app-1       | 
+app-1       |   .   ____          _            __ _ _
+app-1       |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+app-1       | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+app-1       |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+app-1       |   '  |____| .__|_| |_|_| |_\__, | / / / /
+app-1       |  =========|_|==============|___/=/_/_/_/
+app-1       | 
+app-1       |  :: Spring Boot ::                (v3.5.0)
+app-1       | 
+app-1       | 2025-07-15T17:27:34.200Z  INFO 1 --- [           main] com.graphql.project.ProjectApplication   : Starting ProjectApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/target/project-0.0.1-SNAPSHOT.jar started by root in /app)
+app-1       | 2025-07-15T17:27:34.204Z  INFO 1 --- [           main] com.graphql.project.ProjectApplication   : No active profile set, falling back to 1 default profile: "default"
+app-1       | 2025-07-15T17:27:34.935Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+app-1       | 2025-07-15T17:27:35.223Z  INFO 1 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 273 ms. Found 10 JPA repository interfaces.
+app-1       | 2025-07-15T17:27:36.022Z  INFO 1 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+app-1       | 2025-07-15T17:27:36.108Z  INFO 1 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
+app-1       | 2025-07-15T17:27:36.156Z  INFO 1 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+app-1       | 2025-07-15T17:27:36.574Z  INFO 1 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+app-1       | 2025-07-15T17:27:36.618Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+app-1       | 2025-07-15T17:27:36.989Z  INFO 1 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6e3dd5ce
+app-1       | 2025-07-15T17:27:36.991Z  INFO 1 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+app-1       | 2025-07-15T17:27:37.080Z  INFO 1 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+app-1       | 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+app-1       | 	Database driver: undefined/unknown
+app-1       | 	Database version: 16.8
+app-1       | 	Autocommit mode: undefined/unknown
+app-1       | 	Isolation level: undefined/unknown
+app-1       | 	Minimum pool size: undefined/unknown
+app-1       | 	Maximum pool size: undefined/unknown
+app-1       | 2025-07-15T17:27:38.682Z  INFO 1 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+app-1       | Hibernate: 
+app-1       |     set client_min_messages = WARNING
+app-1       | Hibernate: 
+app-1       |     alter table if exists customer 
+app-1       |        drop constraint if exists FKiv4yye896nrvevqc0vpmmskmn
+app-1       | Hibernate: 
+app-1       |     alter table if exists employee 
+app-1       |        drop constraint if exists FKn5ta4w980jlmn8jj3it38gfha
+app-1       | Hibernate: 
+app-1       |     alter table if exists employee 
+app-1       |        drop constraint if exists FKn1gnv2d1kay6rrjaq1jdf5g48
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        drop constraint if exists FK42990fkfr25xd1afjdboyxkoa
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        drop constraint if exists FKbq96a7s1p5ec0rgdl7korhf9u
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        drop constraint if exists FK90lxxrxlt4chf273vcm9pi8ak
+app-1       | Hibernate: 
+app-1       |     alter table if exists order_product 
+app-1       |        drop constraint if exists FKkdhdq76kgywxsiy22e94j2ftc
+app-1       | Hibernate: 
+app-1       |     alter table if exists order_product 
+app-1       |        drop constraint if exists FK8ncwhq0dhmlegm1kd6v67o3q2
+app-1       | Hibernate: 
+app-1       |     alter table if exists payment 
+app-1       |        drop constraint if exists FKby2skjf3ov608yb6nm16b49lg
+app-1       | Hibernate: 
+app-1       |     alter table if exists product 
+app-1       |        drop constraint if exists FKj3tu9l4tlvuoqxl57uka3t11b
+app-1       | Hibernate: 
+app-1       |     drop table if exists customer cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists employee cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists office cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists "order" cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists order_product cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists payment cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists product cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists product_line cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists shippers cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists store cascade
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists customer_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists employee_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists order_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists product_line_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists product_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists shippers_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists store_seq
+app-1       | Hibernate: 
+app-1       |     create sequence customer_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create sequence employee_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create sequence order_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create sequence product_line_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create sequence product_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create sequence shippers_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create sequence store_seq start with 1 increment by 50
+app-1       | Hibernate: 
+app-1       |     create table customer (
+app-1       |         credit_limit numeric(19,0),
+app-1       |         customer_id integer not null,
+app-1       |         employee_id integer,
+app-1       |         postal_code integer not null,
+app-1       |         address1 varchar(255),
+app-1       |         address2 varchar(255),
+app-1       |         city varchar(255),
+app-1       |         country varchar(255),
+app-1       |         first_name varchar(255),
+app-1       |         last_name varchar(255),
+app-1       |         phone varchar(255),
+app-1       |         state varchar(255),
+app-1       |         primary key (customer_id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table employee (
+app-1       |         code integer,
+app-1       |         employee_id integer not null,
+app-1       |         reports_to_id integer,
+app-1       |         job_title varchar(100),
+app-1       |         email varchar(255),
+app-1       |         extension varchar(255),
+app-1       |         first_name varchar(255),
+app-1       |         last_name varchar(255),
+app-1       |         primary key (employee_id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table office (
+app-1       |         code integer generated by default as identity,
+app-1       |         postal_code integer not null,
+app-1       |         territory varchar(100),
+app-1       |         address1 varchar(255),
+app-1       |         address2 varchar(255),
+app-1       |         city varchar(255),
+app-1       |         country varchar(255),
+app-1       |         phone varchar(255),
+app-1       |         state varchar(255),
+app-1       |         primary key (code)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table "order" (
+app-1       |         id integer,
+app-1       |         order_id integer not null,
+app-1       |         ship_id integer,
+app-1       |         status integer not null,
+app-1       |         store_id integer,
+app-1       |         order_date timestamp(6),
+app-1       |         required_date timestamp(6),
+app-1       |         shipped_date timestamp(6),
+app-1       |         comments varchar(255),
+app-1       |         primary key (order_id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table order_product (
+app-1       |         Code integer not null,
+app-1       |         Id integer not null,
+app-1       |         price_each numeric(19,0),
+app-1       |         qty integer not null,
+app-1       |         primary key (Code, Id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table payment (
+app-1       |         amount numeric(19,0),
+app-1       |         check_num integer not null,
+app-1       |         customer_id integer,
+app-1       |         payment_date timestamp(6),
+app-1       |         primary key (check_num)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table product (
+app-1       |         buy_price numeric(19,0),
+app-1       |         id integer,
+app-1       |         product_code integer not null,
+app-1       |         qnty_in_stock integer not null,
+app-1       |         scale integer not null,
+app-1       |         msrp varchar(255),
+app-1       |         name varchar(255),
+app-1       |         pdt_description varchar(255),
+app-1       |         vendor varchar(255),
+app-1       |         primary key (product_code)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table product_line (
+app-1       |         product_line_id integer not null,
+app-1       |         image varchar(100),
+app-1       |         desc_in_text varchar(255),
+app-1       |         desc_inhtml varchar(255),
+app-1       |         primary key (product_line_id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table shippers (
+app-1       |         ship_id integer not null,
+app-1       |         company_name varchar(255),
+app-1       |         phone_number varchar(255),
+app-1       |         primary key (ship_id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     create table store (
+app-1       |         store_id integer not null,
+app-1       |         store_name varchar(255),
+app-1       |         primary key (store_id)
+app-1       |     )
+app-1       | Hibernate: 
+app-1       |     alter table if exists customer 
+app-1       |        add constraint FKiv4yye896nrvevqc0vpmmskmn 
+app-1       |        foreign key (employee_id) 
+app-1       |        references employee
+app-1       | Hibernate: 
+app-1       |     alter table if exists employee 
+app-1       |        add constraint FKn5ta4w980jlmn8jj3it38gfha 
+app-1       |        foreign key (code) 
+app-1       |        references office
+app-1       | Hibernate: 
+app-1       |     alter table if exists employee 
+app-1       |        add constraint FKn1gnv2d1kay6rrjaq1jdf5g48 
+app-1       |        foreign key (reports_to_id) 
+app-1       |        references employee
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        add constraint FK42990fkfr25xd1afjdboyxkoa 
+app-1       |        foreign key (id) 
+app-1       |        references customer
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        add constraint FKbq96a7s1p5ec0rgdl7korhf9u 
+app-1       |        foreign key (ship_id) 
+app-1       |        references shippers
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        add constraint FK90lxxrxlt4chf273vcm9pi8ak 
+app-1       |        foreign key (store_id) 
+app-1       |        references store
+app-1       | Hibernate: 
+app-1       |     alter table if exists order_product 
+app-1       |        add constraint FKkdhdq76kgywxsiy22e94j2ftc 
+app-1       |        foreign key (id) 
+app-1       |        references "order"
+app-1       | Hibernate: 
+app-1       |     alter table if exists order_product 
+app-1       |        add constraint FK8ncwhq0dhmlegm1kd6v67o3q2 
+app-1       |        foreign key (code) 
+app-1       |        references product
+app-1       | Hibernate: 
+app-1       |     alter table if exists payment 
+app-1       |        add constraint FKby2skjf3ov608yb6nm16b49lg 
+app-1       |        foreign key (customer_id) 
+app-1       |        references customer
+app-1       | Hibernate: 
+app-1       |     alter table if exists product 
+app-1       |        add constraint FKj3tu9l4tlvuoqxl57uka3t11b 
+app-1       |        foreign key (id) 
+app-1       |        references product_line
+app-1       | 2025-07-15T17:27:39.379Z  INFO 1 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+app-1       | 2025-07-15T17:27:40.367Z  INFO 1 --- [           main] com.graphql.project.ProjectApplication   : Started ProjectApplication in 6.995 seconds (process running for 7.846)
+app-1       | 2025-07-15T17:27:40.375Z  INFO 1 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+app-1       | Hibernate: 
+app-1       |     set client_min_messages = WARNING
+app-1       | Hibernate: 
+app-1       |     alter table if exists customer 
+app-1       |        drop constraint if exists FKiv4yye896nrvevqc0vpmmskmn
+app-1       | Hibernate: 
+app-1       |     alter table if exists employee 
+app-1       |        drop constraint if exists FKn5ta4w980jlmn8jj3it38gfha
+app-1       | Hibernate: 
+app-1       |     alter table if exists employee 
+app-1       |        drop constraint if exists FKn1gnv2d1kay6rrjaq1jdf5g48
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        drop constraint if exists FK42990fkfr25xd1afjdboyxkoa
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        drop constraint if exists FKbq96a7s1p5ec0rgdl7korhf9u
+app-1       | Hibernate: 
+app-1       |     alter table if exists "order" 
+app-1       |        drop constraint if exists FK90lxxrxlt4chf273vcm9pi8ak
+app-1       | Hibernate: 
+app-1       |     alter table if exists order_product 
+app-1       |        drop constraint if exists FKkdhdq76kgywxsiy22e94j2ftc
+app-1       | Hibernate: 
+app-1       |     alter table if exists order_product 
+app-1       |        drop constraint if exists FK8ncwhq0dhmlegm1kd6v67o3q2
+app-1       | Hibernate: 
+app-1       |     alter table if exists payment 
+app-1       |        drop constraint if exists FKby2skjf3ov608yb6nm16b49lg
+app-1       | Hibernate: 
+app-1       |     alter table if exists product 
+app-1       |        drop constraint if exists FKj3tu9l4tlvuoqxl57uka3t11b
+app-1       | Hibernate: 
+app-1       |     drop table if exists customer cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists employee cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists office cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists "order" cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists order_product cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists payment cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists product cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists product_line cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists shippers cascade
+app-1       | Hibernate: 
+app-1       |     drop table if exists store cascade
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists customer_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists employee_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists order_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists product_line_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists product_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists shippers_seq
+app-1       | Hibernate: 
+app-1       |     drop sequence if exists store_seq
+app-1       | 2025-07-15T17:27:40.424Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+app-1       | 2025-07-15T17:27:40.430Z  INFO 1 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[Kapp-1 exited with code 0

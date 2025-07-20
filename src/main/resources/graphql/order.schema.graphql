@@ -20,8 +20,8 @@ type Order{
 input CreateOrderInput{
     customerId: ID!
     orderDate: String!
-    requiredDate: String
-    shippedDate: String
+    requiredDate: String!
+    shippedDate: String!
     status: Int!
     comments: String!
     shipId: ID!

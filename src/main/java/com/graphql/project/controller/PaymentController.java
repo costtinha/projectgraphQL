@@ -32,7 +32,7 @@ public class PaymentController {
     }
 
     @MutationMapping
-    public Payment createPayment(@Argument("CreatePaymentInput") CreatePayment dto){
+    public Payment createPayment(@Argument("input") CreatePayment dto){
         return service.createPayment(dto);
     }
 
@@ -42,7 +42,7 @@ public class PaymentController {
     }
 
     @MutationMapping
-    public Payment updatePayment(@Argument("checkNum")int id, @Argument("CreatePaymentInput") CreatePayment dto){
+    public Payment updatePayment(@Argument("checkNum")int id, @Argument("input") CreatePayment dto){
         return service.updatePayment(id,dto);
     }
 

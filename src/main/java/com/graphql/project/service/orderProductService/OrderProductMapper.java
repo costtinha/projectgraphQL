@@ -6,18 +6,30 @@ import com.graphql.project.entity.Order;
 import com.graphql.project.entity.OrderProduct;
 import com.graphql.project.entity.OrderProductKey;
 import com.graphql.project.entity.Product;
+import com.graphql.project.persistance.OrderRepository;
+import com.graphql.project.persistance.ProductRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderProductMapper {
+    private final OrderRepository orderRepository;
+    private final ProductRepository productRepository;
+
+    public OrderProductMapper(OrderRepository orderRepository, ProductRepository productRepository) {
+        this.orderRepository = orderRepository;
+        this.productRepository = productRepository;
+    }
+
     public OrderProduct OrderProductDtoToOrderProduct(CreateOrderProduct dto){
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setPriceEach(dto.priceEach());
         orderProduct.setQty(dto.qty());
-        OrderProductKey orderProductKey = new OrderProductKey(dto.orderId(),dto.productId());
-        Order order = new Order();
-        order.setOrderId(dto.orderId());
+        Order order = orderRepository.findById(dto.orderId())
+                .orElseThrow(() -> new RuntimeException("Order with id: " + dto.orderId()+" not found"));
+        Product product = productRepository.findById(dto.productCode())
+                .orElseThrow(() -> new RuntimeException("Product with id "+ dto.productCode()+" not found" ));
+        OrderProductKey orderProductKey = new OrderProductKey(order.getOrderId(),product.getProductCode());
         orderProduct.setOrderId(order);
-        Product product = new Product();
-        product.setProductCode(dto.productId());
         orderProduct.setProductId(product);
         orderProduct.setOrderProductId(orderProductKey);
         return orderProduct;

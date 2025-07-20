@@ -43,9 +43,12 @@ public class EmployeeService {
 
     public Employee updateEmployee(int id, CreateEmployee dto) {
         Employee employee = employeeById(id);
-        Employee reportsTo = new Employee();
-        reportsTo.setEmployeeId(dto.reportsTo());
-        employee.setReportsTo(reportsTo);
+        if(dto.reportsTo() != null) {
+            Employee reportsTo = new Employee();
+            reportsTo.setEmployeeId(dto.reportsTo());
+            employee.setReportsTo(reportsTo);
+        }
+
         employee.setEmail(dto.email());
         employee.setExtension(dto.extension());
         employee.setFirstName(dto.firstName());

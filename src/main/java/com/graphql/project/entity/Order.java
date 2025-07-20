@@ -22,7 +22,7 @@ public class Order {
     @ManyToOne
     @JsonBackReference
     @JoinColumn(
-            name = "Id"
+            name = "CustomerId"
     )
     private Customer customerId;
     private LocalDateTime orderDate;
@@ -36,7 +36,7 @@ public class Order {
     @JoinColumn(
             name = "ShipId"
     )
-    private Shippers shippingId;
+    private Shippers shipId;
 
     @ManyToOne
     @JsonBackReference
@@ -45,7 +45,7 @@ public class Order {
     )
     private Store storeId;
 
-    @OneToMany(mappedBy = "OrderId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "orderId", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<OrderProduct> orderProducts;
 
@@ -64,7 +64,7 @@ public class Order {
         this.shippedDate = shippedDate;
         this.status = status;
         this.comments = comments;
-        this.shippingId = shippingId;
+        this.shipId = shippingId;
         this.storeId = storeId;
         this.orderProducts = orderProducts;
     }
@@ -80,7 +80,7 @@ public class Order {
         this.shippedDate = shippedDate;
         this.status = status;
         this.comments = comments;
-        shippingId = shipId;
+        this.shipId = shipId;
         this.storeId = storeId;
     }
 
@@ -144,12 +144,12 @@ public class Order {
         this.comments = comments;
     }
 
-    public Shippers getShippingId() {
-        return shippingId;
+    public Shippers getShipId() {
+        return shipId;
     }
 
-    public void setShippingId(Shippers shipId) {
-        shippingId = shipId;
+    public void setShipId(Shippers shipId) {
+        this.shipId = shipId;
     }
 
     public Store getStoreId() {

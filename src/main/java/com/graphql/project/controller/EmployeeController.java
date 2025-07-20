@@ -21,7 +21,7 @@ public class EmployeeController {
     }
 
     @QueryMapping
-    public List<Employee> employees(){
+    public List<Employee> allEmployees(){
         return service.employees();
     }
 
@@ -31,7 +31,7 @@ public class EmployeeController {
     }
 
     @MutationMapping
-    public Employee createEmployee(@Argument("CreateEmployeeInput") CreateEmployee dto){
+    public Employee createEmployee(@Argument("input") CreateEmployee dto){
         return service.createEmployee(dto);
     }
 
@@ -41,7 +41,7 @@ public class EmployeeController {
     }
 
     @MutationMapping
-    public Employee updateEmployee(@Argument("employeeId") int id,@Argument("CreateEmployeeInput") CreateEmployee dto){
+    public Employee updateEmployee(@Argument("employeeId") int id,@Argument("input") CreateEmployee dto){
         return service.updateEmployee(id,dto);
     }
 

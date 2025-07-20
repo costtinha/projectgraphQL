@@ -10,14 +10,21 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  data:
-    mongodb:
-      uri: ${SPRING_DATA_MONGODB_URI:mongodb://mongodb:27017/projectdb}
-    redis:
-      host: ${SPRING_REDIS_HOST:redis}
-      port: ${SPRING_REDIS_PORT:6379}
   graphql:
-    servlet:
-      mapping: /graphql
     graphiql:
       enabled: true
+      path: /graphiql
+    path: /graphql
+    schema:
+      locations: classpath:graphql/
+      file-extensions: .graphql,.graphqls
+    cors:
+      allowed-origins: "*"
+      allowed-methods: GET,POST
+
+logging:
+  level:
+    org.springframework.graphql: DEBUG
+    graphql: DEBUG
+    com.graphql.project: DEBUG
+    org.springframework.web: DEBUG

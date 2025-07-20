@@ -29,7 +29,7 @@ public class ShippersController {
     }
 
     @MutationMapping
-    public  Shippers createShippers(@Argument("CreateShippersInput")CreateShipper dto){
+    public  Shippers createShippers(@Argument("input")CreateShipper dto){
         return service.createShippers(dto);
     }
 
@@ -39,7 +39,7 @@ public class ShippersController {
     }
 
     @MutationMapping
-    public Shippers updateShippers(@Argument("shipId")int id, @Argument("CreateShippersInput") CreateShipper dto){
+    public Shippers updateShippers(@Argument("shipId")int id, @Argument("input") CreateShipper dto){
         return service.updateShippers(id,dto);
     }
 }

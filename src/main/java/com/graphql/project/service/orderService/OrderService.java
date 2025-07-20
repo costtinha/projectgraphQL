@@ -8,7 +8,8 @@ import com.graphql.project.entity.Store;
 import com.graphql.project.persistance.OrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -30,8 +31,23 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("Order with id " + id + " not found"));
     }
 
-    public Order createOrder(CreateOrder dto) {
-        return repository.save(mapper.orderDtoToOrder(dto));
+    public Order createOrder(CreateOrder dto)
+    {
+        try {
+
+
+            Order mappedOrder = mapper.orderDtoToOrder(dto);
+            System.out.println("Teste de mapeamento " + mappedOrder.getOrderId() + " " + mappedOrder.getComments());
+            Order savedOrder = repository.save(mappedOrder);
+            if (savedOrder == null) {
+                throw new RuntimeException("Failed to save order: repository is null");
+
+            }
+            return savedOrder;
+        }
+        catch (Exception e){
+            throw new RuntimeException("Error creating order: " + e.getMessage(), e);
+        }
     }
 
     public Order deleteOrderById(int id) {
@@ -42,17 +58,21 @@ public class OrderService {
 
     public Order updateOrder(int id, CreateOrder dto) {
         Order order = findOrderById(id);
-        order.setOrderDate(dto.orderDate());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(dto.orderDate(),formatter);
+        order.setOrderDate(dateTime);
         order.setComments(dto.comments());
-        order.setRequiredDate(dto.requiredDate());
-        order.setShippedDate(dto.shippedDate());
+        dateTime = LocalDateTime.parse(dto.requiredDate(), formatter);
+        order.setRequiredDate(dateTime);
+        dateTime = LocalDateTime.parse(dto.shippedDate(), formatter);
+        order.setShippedDate(dateTime);
         order.setStatus(dto.status());
         Customer customer = new Customer();
         customer.setCustomerId(dto.customerId());
         order.setCustomerId(customer);
         Shippers shippers = new Shippers();
-        shippers.setShipId(dto.shippingId());
-        order.setShippingId(shippers);
+        shippers.setShipId(dto.shipId());
+        order.setShipId(shippers);
         Store store = new Store();
         store.setStoreId(dto.storeId());
         order.setStoreId(store);

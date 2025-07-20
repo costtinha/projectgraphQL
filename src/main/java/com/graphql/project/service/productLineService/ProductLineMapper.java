@@ -2,9 +2,11 @@ package com.graphql.project.service.productLineService;
 
 import com.graphql.project.dtos.CreateProductLine;
 import com.graphql.project.entity.ProductLine;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 
+@Component
 public class ProductLineMapper {
     public ProductLine productLineDtoToProductLine(CreateProductLine dto){
         ProductLine productLine = new ProductLine();

@@ -1,5 +1,5 @@
 extend type Query{
-    employees: [Employee]
+    allEmployees: [Employee]
     employeeById(employeeId: ID): Employee
 }
 
@@ -12,13 +12,14 @@ type Employee{
     extension: String
     email: String!
     jobTitle: String!
-    reports: [Employee]
+    employees: [Employee]
+    customers: [Customer]
 }
 
 
 input CreateEmployeeInput{
     officeCode: ID!
-    reportsTo: ID!
+    reportsTo: ID
     lastName: String!
     firstName: String!
     extension: String

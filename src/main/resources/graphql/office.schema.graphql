@@ -7,7 +7,8 @@ type Office{
     code: ID!
     city: String!
     phone: String!
-    address: String!
+    address1: String!
+    address2: String
     state: String!
     country: String!
     postalCode: Int!
@@ -20,8 +21,8 @@ input CreateOfficeInput{
     address: String!
     state: String!
     country: String!
-    postalCode: Int
-    territory: String
+    postalCode: Int!
+    territory: String!
 }
 
 extend type Mutation{

@@ -25,7 +25,7 @@ public class ProductLine {
             length = 100
     )
     private String image;
-    @OneToMany(mappedBy = "productLine_id",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productLineId",fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Product> products;
 

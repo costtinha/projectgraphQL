@@ -27,24 +27,24 @@ public class OrderProductController {
         return service.findOrderProducts();
     }
     @QueryMapping
-    public OrderProduct orderProductById(@Argument("OrderProductKeyInput") OrderProductKeyInput id){
-        return service.findOrderProductById(id);
+    public OrderProduct orderProductById(@Argument("orderId") int orderId, @Argument("productCode")int productCode){
+        return service.findOrderProductById(orderId, productCode);
     }
 
     @MutationMapping
-    public OrderProduct createOrderProduct(@Argument("CreateOrderProductInput") CreateOrderProduct dto){
+    public OrderProduct createOrderProduct(@Argument("input") CreateOrderProduct dto){
         return service.createOrderProduct(dto);
     }
 
     @MutationMapping
-    public OrderProduct deleteOrderProduct(@Argument("OrderProductKeyInput") OrderProductKeyInput id){
-        return service.deleteOrderProductById(id);
+    public OrderProduct deleteOrderProduct(@Argument("orderId") int orderId, @Argument("productCode")int productCode){
+        return service.deleteOrderProductById(orderId,productCode);
     }
 
     @MutationMapping
     public OrderProduct updateOrderProduct(@Argument("orderId")int orderId,
                                            @Argument("productCode")int productCode,
-                                           @Argument("UpdateOrderProduct")UpdateOrderProduct dto){
+                                           @Argument("input")UpdateOrderProduct dto){
         return service.updateOrderProduct(orderId,productCode,dto);
     }
 

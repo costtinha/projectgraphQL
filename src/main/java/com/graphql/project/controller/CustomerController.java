@@ -31,7 +31,7 @@ public class CustomerController {
     }
 
     @MutationMapping
-    public Customer createCustomer(@Argument("CreateCustomerInput")CreateCustomer dto){
+    public Customer createCustomer(@Argument("input")CreateCustomer dto){
         return service.createCustomer(dto);
     }
 
@@ -42,7 +42,7 @@ public class CustomerController {
 
 
     @MutationMapping
-    public Customer updateCustomer(@Argument("customerId") int id, @Argument("CreateCustomerInput") CreateCustomer dto){
+    public Customer updateCustomer(@Argument("customerId") int id, @Argument("input") CreateCustomer dto){
         return service.updateCustomer(id,dto);
     }
 
