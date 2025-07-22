@@ -10,5 +10,5 @@ public record CreateCustomer(Integer salesRepEmployeeNum,
                              String address2, String city,
                              String state, int postalCode,
                              String country,
-                             BigDecimal creditLimit) {
+                             int creditLimit) {
 }

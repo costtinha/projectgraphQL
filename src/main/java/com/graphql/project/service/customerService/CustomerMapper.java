@@ -5,6 +5,7 @@ import com.graphql.project.entity.Customer;
 import com.graphql.project.entity.Employee;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 
 @Component
@@ -18,7 +19,8 @@ public class CustomerMapper {
         customer.setFirstName(dto.firstName());
         customer.setLastName(dto.lastName());
         customer.setPhone(dto.phone());
-        customer.setCreditLimit(dto.creditLimit());
+        BigDecimal creditLimit = new BigDecimal(dto.creditLimit());
+        customer.setCreditLimit(creditLimit);
         customer.setPostalCode(dto.postalCode());
         if(dto.salesRepEmployeeNum() != null) {
             Employee employee = new Employee();

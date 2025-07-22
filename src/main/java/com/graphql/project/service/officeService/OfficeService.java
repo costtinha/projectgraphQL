@@ -23,7 +23,7 @@ public class OfficeService {
 
     public Office findOfficeById(int id){
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Office with id "+ id + "Not found"));
+                .orElseThrow(() -> new RuntimeException("Office with id "+ id + " Not found"));
 
     }
 

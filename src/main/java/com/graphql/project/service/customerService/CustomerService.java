@@ -6,6 +6,7 @@ import com.graphql.project.entity.Employee;
 import com.graphql.project.persistance.CustomerRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class CustomerService {
 
     public Customer findCustomerById(int id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Customer with id " + id + "not found"));
+                .orElseThrow(() -> new RuntimeException("Customer with id " + id + " not found"));
     }
 
     public Customer createCustomer(CreateCustomer dto) {
@@ -48,7 +49,8 @@ public class CustomerService {
         customer.setFirstName(dto.firstName());
         customer.setLastName(dto.lastName());
         customer.setPhone(dto.phone());
-        customer.setCreditLimit(dto.creditLimit());
+        BigDecimal creditLimit = new BigDecimal(dto.creditLimit());
+        customer.setCreditLimit(creditLimit);
         customer.setPostalCode(dto.postalCode());
         if(dto.salesRepEmployeeNum() != null) {
             Employee employee = new Employee();
