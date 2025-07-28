@@ -9,5 +9,5 @@ import java.math.BigDecimal;
 public record CreateOrderProduct(int orderId,
                                  int productCode,
                                  int qty,
-                                 BigDecimal priceEach) {
+                                 int priceEach) {
 }

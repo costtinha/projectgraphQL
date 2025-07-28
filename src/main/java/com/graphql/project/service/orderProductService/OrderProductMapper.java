@@ -10,6 +10,8 @@ import com.graphql.project.persistance.OrderRepository;
 import com.graphql.project.persistance.ProductRepository;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 public class OrderProductMapper {
     private final OrderRepository orderRepository;
@@ -22,7 +24,8 @@ public class OrderProductMapper {
 
     public OrderProduct OrderProductDtoToOrderProduct(CreateOrderProduct dto){
         OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setPriceEach(dto.priceEach());
+        BigDecimal bigDecimal = new BigDecimal(dto.priceEach());
+        orderProduct.setPriceEach(bigDecimal);
         orderProduct.setQty(dto.qty());
         Order order = orderRepository.findById(dto.orderId())
                 .orElseThrow(() -> new RuntimeException("Order with id: " + dto.orderId()+" not found"));

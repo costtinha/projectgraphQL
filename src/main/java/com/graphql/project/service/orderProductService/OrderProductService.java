@@ -7,6 +7,7 @@ import com.graphql.project.entity.OrderProductKey;
 import com.graphql.project.persistance.OrderProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -45,7 +46,8 @@ public class OrderProductService {
     public OrderProduct updateOrderProduct(int orderId, int productCode, UpdateOrderProduct dto) {
         OrderProduct orderProduct = findOrderProductById(orderId,productCode);
         orderProduct.setQty(dto.qnty());
-        orderProduct.setPriceEach(dto.priceEach());
+        BigDecimal bigDecimal = new BigDecimal(dto.priceEach());
+        orderProduct.setPriceEach(bigDecimal);
         return repository.save(orderProduct);
     }
 }
