@@ -1,10 +1,8 @@
 package com.graphql.project.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.graphql.project.entity.Employee;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -13,7 +11,7 @@ import java.util.List;
         @NamedQuery(name = "Office.findOfficeByState", query = "SELECT o FROM Office o WHERE o.state = :state"),
         @NamedQuery(name = "Office.findOfficeByCountry", query = "SELECT o FROM Office o WHERE o.country = :country"),
         @NamedQuery(name = "Office.findAllOffice", query = "SELECT o FROM Office o LEFT JOIN FETCH o.employees")})
-public class Office implements Serializable {
+public class Office{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +20,7 @@ public class Office implements Serializable {
     private String phone;
     private String address1;
     private String address2;
+    @Column(unique = true,nullable = true,length = 100)
     private String state;
     private String country;
     private int postalCode;
