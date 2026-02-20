@@ -19,7 +19,6 @@ Ideal para aprendizado, protótipos rápidos ou demonstração de GraphQL em por
 - [Exemplos de Queries e Mutations](#-exemplos-de-queries-e-mutations)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Decisões & Aprendizados](#-decisões--aprendizados)
-- [Playground / Interface GraphQL](#-playground--interface-graphql)
 - [Licença](#-licença)
 
 ---
